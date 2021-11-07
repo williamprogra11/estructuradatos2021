@@ -1,25 +1,32 @@
 #include <iostream>
-#include <string>
+#include "cola.hpp"
 #include "pila.hpp"
+#include "listagenerica.hpp"
 
 using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
 
-bool estanLlavesBalanceadas(string expresion){
+bool es_palindromo(string expresion){
 	Pila<char> unaPila;
+	Cola<char> simulacion;
+	
 	for(size_t i=0; i < expresion.length(); i++){
 		char caracter = expresion[i];
+		
+		unaPila.push(caracter);
+		simulacion.enqueue(caracter);
+		
 		cout << caracter << endl; // Se puede borrar después
-		if(caracter == '{'){
-			unaPila.push(caracter);
+		
+		if(caracter == caracter){
+			//
 			cout << unaPila.pilaComoCadena() << endl;
-		} else if ( caracter == '}') {
+		} else if ( caracter != caracter) {
 			if(unaPila.estaPilaVacia()){
 				return false;
 			}
-			unaPila.pop();
 			cout << unaPila.pilaComoCadena() << endl;
 		}
 	}
@@ -30,10 +37,11 @@ int main() {
 	string cadena;
 	cout << "Ingrese una expresion: " << endl;
 	cin >> cadena;
-	if (estanLlavesBalanceadas(cadena)){
-		cout << "Las llaves estan balanceadas.";
+	if (es_palindromo(cadena)){
+		cout << "La palabra es un palindromo";
 	} else {
-		cout << "Las llaves no estan balanceadas.";
+		cout << "La palabra no es un palindromo";
 	}
 	return 0;
 }
+

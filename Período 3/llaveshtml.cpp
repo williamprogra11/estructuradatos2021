@@ -11,11 +11,11 @@ bool estanLlavesBalanceadas(string expresion){
 	Pila<char> unaPila;
 	for(size_t i=0; i < expresion.length(); i++){
 		char caracter = expresion[i];
-		cout << caracter << endl; // Se puede borrar después
-		if(caracter == '{'){
+		
+		if(caracter == '(<\w+>|</\w+>)'){
 			unaPila.push(caracter);
 			cout << unaPila.pilaComoCadena() << endl;
-		} else if ( caracter == '}') {
+		} else if ( caracter == '(<\w+>|</\w+>)') {
 			if(unaPila.estaPilaVacia()){
 				return false;
 			}
